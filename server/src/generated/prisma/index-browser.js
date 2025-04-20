@@ -131,6 +131,14 @@ exports.Prisma.VendorScalarFieldEnum = {
   name: 'name'
 };
 
+exports.Prisma.FileMappingScalarFieldEnum = {
+  id: 'id',
+  original: 'original',
+  mappedTo: 'mappedTo',
+  createdAt: 'createdAt',
+  filename: 'filename'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -149,7 +157,8 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   PurchaseItem: 'PurchaseItem',
-  Vendor: 'Vendor'
+  Vendor: 'Vendor',
+  FileMapping: 'FileMapping'
 };
 
 /**

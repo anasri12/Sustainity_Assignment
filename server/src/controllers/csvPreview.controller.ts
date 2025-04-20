@@ -6,8 +6,7 @@ export const previewCSV = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const file = req.file;
-  if (!file) {
+  if (!req.file) {
     res.status(400).json({ error: "No file uploaded" });
     return;
   }
@@ -16,7 +15,7 @@ export const previewCSV = async (
 
   try {
     await new Promise<void>((resolve, reject) => {
-      fs.createReadStream(file.path)
+      fs.createReadStream(req.file!.path)
         .pipe(csvParser())
         .on("data", (data) => {
           if (results.length < 10) results.push(data);
@@ -25,11 +24,10 @@ export const previewCSV = async (
         .on("error", reject);
     });
 
-    fs.unlinkSync(file.path);
-
+    fs.unlinkSync(req.file!.path);
     res.status(200).json(results);
   } catch (error) {
-    console.error("CSV Preview Error:", error);
-    res.status(500).json({ error: "Failed to preview CSV" });
+    console.error("Preview Error:", error);
+    res.status(500).json({ error: "Failed to parse CSV" });
   }
 };

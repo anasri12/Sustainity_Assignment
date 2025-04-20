@@ -23,6 +23,11 @@ export type PurchaseItem = $Result.DefaultSelection<Prisma.$PurchaseItemPayload>
  * 
  */
 export type Vendor = $Result.DefaultSelection<Prisma.$VendorPayload>
+/**
+ * Model FileMapping
+ * 
+ */
+export type FileMapping = $Result.DefaultSelection<Prisma.$FileMappingPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +173,16 @@ export class PrismaClient<
     * ```
     */
   get vendor(): Prisma.VendorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fileMapping`: Exposes CRUD operations for the **FileMapping** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FileMappings
+    * const fileMappings = await prisma.fileMapping.findMany()
+    * ```
+    */
+  get fileMapping(): Prisma.FileMappingDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -609,7 +624,8 @@ export namespace Prisma {
 
   export const ModelName: {
     PurchaseItem: 'PurchaseItem',
-    Vendor: 'Vendor'
+    Vendor: 'Vendor',
+    FileMapping: 'FileMapping'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -628,7 +644,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "purchaseItem" | "vendor"
+      modelProps: "purchaseItem" | "vendor" | "fileMapping"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -780,6 +796,80 @@ export namespace Prisma {
           }
         }
       }
+      FileMapping: {
+        payload: Prisma.$FileMappingPayload<ExtArgs>
+        fields: Prisma.FileMappingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FileMappingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FileMappingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload>
+          }
+          findFirst: {
+            args: Prisma.FileMappingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FileMappingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload>
+          }
+          findMany: {
+            args: Prisma.FileMappingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload>[]
+          }
+          create: {
+            args: Prisma.FileMappingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload>
+          }
+          createMany: {
+            args: Prisma.FileMappingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FileMappingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload>[]
+          }
+          delete: {
+            args: Prisma.FileMappingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload>
+          }
+          update: {
+            args: Prisma.FileMappingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload>
+          }
+          deleteMany: {
+            args: Prisma.FileMappingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FileMappingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FileMappingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload>[]
+          }
+          upsert: {
+            args: Prisma.FileMappingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileMappingPayload>
+          }
+          aggregate: {
+            args: Prisma.FileMappingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFileMapping>
+          }
+          groupBy: {
+            args: Prisma.FileMappingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FileMappingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FileMappingCountArgs<ExtArgs>
+            result: $Utils.Optional<FileMappingCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -866,6 +956,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     purchaseItem?: PurchaseItemOmit
     vendor?: VendorOmit
+    fileMapping?: FileMappingOmit
   }
 
   /* Types for Logging */
@@ -3196,6 +3287,1035 @@ export namespace Prisma {
 
 
   /**
+   * Model FileMapping
+   */
+
+  export type AggregateFileMapping = {
+    _count: FileMappingCountAggregateOutputType | null
+    _avg: FileMappingAvgAggregateOutputType | null
+    _sum: FileMappingSumAggregateOutputType | null
+    _min: FileMappingMinAggregateOutputType | null
+    _max: FileMappingMaxAggregateOutputType | null
+  }
+
+  export type FileMappingAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type FileMappingSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type FileMappingMinAggregateOutputType = {
+    id: number | null
+    original: string | null
+    mappedTo: string | null
+    createdAt: Date | null
+    filename: string | null
+  }
+
+  export type FileMappingMaxAggregateOutputType = {
+    id: number | null
+    original: string | null
+    mappedTo: string | null
+    createdAt: Date | null
+    filename: string | null
+  }
+
+  export type FileMappingCountAggregateOutputType = {
+    id: number
+    original: number
+    mappedTo: number
+    createdAt: number
+    filename: number
+    _all: number
+  }
+
+
+  export type FileMappingAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type FileMappingSumAggregateInputType = {
+    id?: true
+  }
+
+  export type FileMappingMinAggregateInputType = {
+    id?: true
+    original?: true
+    mappedTo?: true
+    createdAt?: true
+    filename?: true
+  }
+
+  export type FileMappingMaxAggregateInputType = {
+    id?: true
+    original?: true
+    mappedTo?: true
+    createdAt?: true
+    filename?: true
+  }
+
+  export type FileMappingCountAggregateInputType = {
+    id?: true
+    original?: true
+    mappedTo?: true
+    createdAt?: true
+    filename?: true
+    _all?: true
+  }
+
+  export type FileMappingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FileMapping to aggregate.
+     */
+    where?: FileMappingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FileMappings to fetch.
+     */
+    orderBy?: FileMappingOrderByWithRelationInput | FileMappingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FileMappingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FileMappings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FileMappings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FileMappings
+    **/
+    _count?: true | FileMappingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FileMappingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FileMappingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FileMappingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FileMappingMaxAggregateInputType
+  }
+
+  export type GetFileMappingAggregateType<T extends FileMappingAggregateArgs> = {
+        [P in keyof T & keyof AggregateFileMapping]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFileMapping[P]>
+      : GetScalarType<T[P], AggregateFileMapping[P]>
+  }
+
+
+
+
+  export type FileMappingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FileMappingWhereInput
+    orderBy?: FileMappingOrderByWithAggregationInput | FileMappingOrderByWithAggregationInput[]
+    by: FileMappingScalarFieldEnum[] | FileMappingScalarFieldEnum
+    having?: FileMappingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FileMappingCountAggregateInputType | true
+    _avg?: FileMappingAvgAggregateInputType
+    _sum?: FileMappingSumAggregateInputType
+    _min?: FileMappingMinAggregateInputType
+    _max?: FileMappingMaxAggregateInputType
+  }
+
+  export type FileMappingGroupByOutputType = {
+    id: number
+    original: string
+    mappedTo: string
+    createdAt: Date
+    filename: string
+    _count: FileMappingCountAggregateOutputType | null
+    _avg: FileMappingAvgAggregateOutputType | null
+    _sum: FileMappingSumAggregateOutputType | null
+    _min: FileMappingMinAggregateOutputType | null
+    _max: FileMappingMaxAggregateOutputType | null
+  }
+
+  type GetFileMappingGroupByPayload<T extends FileMappingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FileMappingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FileMappingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FileMappingGroupByOutputType[P]>
+            : GetScalarType<T[P], FileMappingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FileMappingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    original?: boolean
+    mappedTo?: boolean
+    createdAt?: boolean
+    filename?: boolean
+  }, ExtArgs["result"]["fileMapping"]>
+
+  export type FileMappingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    original?: boolean
+    mappedTo?: boolean
+    createdAt?: boolean
+    filename?: boolean
+  }, ExtArgs["result"]["fileMapping"]>
+
+  export type FileMappingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    original?: boolean
+    mappedTo?: boolean
+    createdAt?: boolean
+    filename?: boolean
+  }, ExtArgs["result"]["fileMapping"]>
+
+  export type FileMappingSelectScalar = {
+    id?: boolean
+    original?: boolean
+    mappedTo?: boolean
+    createdAt?: boolean
+    filename?: boolean
+  }
+
+  export type FileMappingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "original" | "mappedTo" | "createdAt" | "filename", ExtArgs["result"]["fileMapping"]>
+
+  export type $FileMappingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FileMapping"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      original: string
+      mappedTo: string
+      createdAt: Date
+      filename: string
+    }, ExtArgs["result"]["fileMapping"]>
+    composites: {}
+  }
+
+  type FileMappingGetPayload<S extends boolean | null | undefined | FileMappingDefaultArgs> = $Result.GetResult<Prisma.$FileMappingPayload, S>
+
+  type FileMappingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FileMappingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FileMappingCountAggregateInputType | true
+    }
+
+  export interface FileMappingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FileMapping'], meta: { name: 'FileMapping' } }
+    /**
+     * Find zero or one FileMapping that matches the filter.
+     * @param {FileMappingFindUniqueArgs} args - Arguments to find a FileMapping
+     * @example
+     * // Get one FileMapping
+     * const fileMapping = await prisma.fileMapping.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FileMappingFindUniqueArgs>(args: SelectSubset<T, FileMappingFindUniqueArgs<ExtArgs>>): Prisma__FileMappingClient<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FileMapping that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FileMappingFindUniqueOrThrowArgs} args - Arguments to find a FileMapping
+     * @example
+     * // Get one FileMapping
+     * const fileMapping = await prisma.fileMapping.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FileMappingFindUniqueOrThrowArgs>(args: SelectSubset<T, FileMappingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FileMappingClient<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FileMapping that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileMappingFindFirstArgs} args - Arguments to find a FileMapping
+     * @example
+     * // Get one FileMapping
+     * const fileMapping = await prisma.fileMapping.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FileMappingFindFirstArgs>(args?: SelectSubset<T, FileMappingFindFirstArgs<ExtArgs>>): Prisma__FileMappingClient<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FileMapping that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileMappingFindFirstOrThrowArgs} args - Arguments to find a FileMapping
+     * @example
+     * // Get one FileMapping
+     * const fileMapping = await prisma.fileMapping.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FileMappingFindFirstOrThrowArgs>(args?: SelectSubset<T, FileMappingFindFirstOrThrowArgs<ExtArgs>>): Prisma__FileMappingClient<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FileMappings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileMappingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FileMappings
+     * const fileMappings = await prisma.fileMapping.findMany()
+     * 
+     * // Get first 10 FileMappings
+     * const fileMappings = await prisma.fileMapping.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fileMappingWithIdOnly = await prisma.fileMapping.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FileMappingFindManyArgs>(args?: SelectSubset<T, FileMappingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FileMapping.
+     * @param {FileMappingCreateArgs} args - Arguments to create a FileMapping.
+     * @example
+     * // Create one FileMapping
+     * const FileMapping = await prisma.fileMapping.create({
+     *   data: {
+     *     // ... data to create a FileMapping
+     *   }
+     * })
+     * 
+     */
+    create<T extends FileMappingCreateArgs>(args: SelectSubset<T, FileMappingCreateArgs<ExtArgs>>): Prisma__FileMappingClient<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FileMappings.
+     * @param {FileMappingCreateManyArgs} args - Arguments to create many FileMappings.
+     * @example
+     * // Create many FileMappings
+     * const fileMapping = await prisma.fileMapping.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FileMappingCreateManyArgs>(args?: SelectSubset<T, FileMappingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FileMappings and returns the data saved in the database.
+     * @param {FileMappingCreateManyAndReturnArgs} args - Arguments to create many FileMappings.
+     * @example
+     * // Create many FileMappings
+     * const fileMapping = await prisma.fileMapping.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FileMappings and only return the `id`
+     * const fileMappingWithIdOnly = await prisma.fileMapping.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FileMappingCreateManyAndReturnArgs>(args?: SelectSubset<T, FileMappingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FileMapping.
+     * @param {FileMappingDeleteArgs} args - Arguments to delete one FileMapping.
+     * @example
+     * // Delete one FileMapping
+     * const FileMapping = await prisma.fileMapping.delete({
+     *   where: {
+     *     // ... filter to delete one FileMapping
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FileMappingDeleteArgs>(args: SelectSubset<T, FileMappingDeleteArgs<ExtArgs>>): Prisma__FileMappingClient<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FileMapping.
+     * @param {FileMappingUpdateArgs} args - Arguments to update one FileMapping.
+     * @example
+     * // Update one FileMapping
+     * const fileMapping = await prisma.fileMapping.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FileMappingUpdateArgs>(args: SelectSubset<T, FileMappingUpdateArgs<ExtArgs>>): Prisma__FileMappingClient<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FileMappings.
+     * @param {FileMappingDeleteManyArgs} args - Arguments to filter FileMappings to delete.
+     * @example
+     * // Delete a few FileMappings
+     * const { count } = await prisma.fileMapping.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FileMappingDeleteManyArgs>(args?: SelectSubset<T, FileMappingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FileMappings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileMappingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FileMappings
+     * const fileMapping = await prisma.fileMapping.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FileMappingUpdateManyArgs>(args: SelectSubset<T, FileMappingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FileMappings and returns the data updated in the database.
+     * @param {FileMappingUpdateManyAndReturnArgs} args - Arguments to update many FileMappings.
+     * @example
+     * // Update many FileMappings
+     * const fileMapping = await prisma.fileMapping.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FileMappings and only return the `id`
+     * const fileMappingWithIdOnly = await prisma.fileMapping.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FileMappingUpdateManyAndReturnArgs>(args: SelectSubset<T, FileMappingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FileMapping.
+     * @param {FileMappingUpsertArgs} args - Arguments to update or create a FileMapping.
+     * @example
+     * // Update or create a FileMapping
+     * const fileMapping = await prisma.fileMapping.upsert({
+     *   create: {
+     *     // ... data to create a FileMapping
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FileMapping we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FileMappingUpsertArgs>(args: SelectSubset<T, FileMappingUpsertArgs<ExtArgs>>): Prisma__FileMappingClient<$Result.GetResult<Prisma.$FileMappingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FileMappings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileMappingCountArgs} args - Arguments to filter FileMappings to count.
+     * @example
+     * // Count the number of FileMappings
+     * const count = await prisma.fileMapping.count({
+     *   where: {
+     *     // ... the filter for the FileMappings we want to count
+     *   }
+     * })
+    **/
+    count<T extends FileMappingCountArgs>(
+      args?: Subset<T, FileMappingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FileMappingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FileMapping.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileMappingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FileMappingAggregateArgs>(args: Subset<T, FileMappingAggregateArgs>): Prisma.PrismaPromise<GetFileMappingAggregateType<T>>
+
+    /**
+     * Group by FileMapping.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileMappingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FileMappingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FileMappingGroupByArgs['orderBy'] }
+        : { orderBy?: FileMappingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FileMappingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFileMappingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FileMapping model
+   */
+  readonly fields: FileMappingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FileMapping.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FileMappingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FileMapping model
+   */
+  interface FileMappingFieldRefs {
+    readonly id: FieldRef<"FileMapping", 'Int'>
+    readonly original: FieldRef<"FileMapping", 'String'>
+    readonly mappedTo: FieldRef<"FileMapping", 'String'>
+    readonly createdAt: FieldRef<"FileMapping", 'DateTime'>
+    readonly filename: FieldRef<"FileMapping", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FileMapping findUnique
+   */
+  export type FileMappingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * Filter, which FileMapping to fetch.
+     */
+    where: FileMappingWhereUniqueInput
+  }
+
+  /**
+   * FileMapping findUniqueOrThrow
+   */
+  export type FileMappingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * Filter, which FileMapping to fetch.
+     */
+    where: FileMappingWhereUniqueInput
+  }
+
+  /**
+   * FileMapping findFirst
+   */
+  export type FileMappingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * Filter, which FileMapping to fetch.
+     */
+    where?: FileMappingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FileMappings to fetch.
+     */
+    orderBy?: FileMappingOrderByWithRelationInput | FileMappingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FileMappings.
+     */
+    cursor?: FileMappingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FileMappings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FileMappings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FileMappings.
+     */
+    distinct?: FileMappingScalarFieldEnum | FileMappingScalarFieldEnum[]
+  }
+
+  /**
+   * FileMapping findFirstOrThrow
+   */
+  export type FileMappingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * Filter, which FileMapping to fetch.
+     */
+    where?: FileMappingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FileMappings to fetch.
+     */
+    orderBy?: FileMappingOrderByWithRelationInput | FileMappingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FileMappings.
+     */
+    cursor?: FileMappingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FileMappings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FileMappings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FileMappings.
+     */
+    distinct?: FileMappingScalarFieldEnum | FileMappingScalarFieldEnum[]
+  }
+
+  /**
+   * FileMapping findMany
+   */
+  export type FileMappingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * Filter, which FileMappings to fetch.
+     */
+    where?: FileMappingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FileMappings to fetch.
+     */
+    orderBy?: FileMappingOrderByWithRelationInput | FileMappingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FileMappings.
+     */
+    cursor?: FileMappingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FileMappings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FileMappings.
+     */
+    skip?: number
+    distinct?: FileMappingScalarFieldEnum | FileMappingScalarFieldEnum[]
+  }
+
+  /**
+   * FileMapping create
+   */
+  export type FileMappingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * The data needed to create a FileMapping.
+     */
+    data: XOR<FileMappingCreateInput, FileMappingUncheckedCreateInput>
+  }
+
+  /**
+   * FileMapping createMany
+   */
+  export type FileMappingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FileMappings.
+     */
+    data: FileMappingCreateManyInput | FileMappingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FileMapping createManyAndReturn
+   */
+  export type FileMappingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * The data used to create many FileMappings.
+     */
+    data: FileMappingCreateManyInput | FileMappingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FileMapping update
+   */
+  export type FileMappingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * The data needed to update a FileMapping.
+     */
+    data: XOR<FileMappingUpdateInput, FileMappingUncheckedUpdateInput>
+    /**
+     * Choose, which FileMapping to update.
+     */
+    where: FileMappingWhereUniqueInput
+  }
+
+  /**
+   * FileMapping updateMany
+   */
+  export type FileMappingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FileMappings.
+     */
+    data: XOR<FileMappingUpdateManyMutationInput, FileMappingUncheckedUpdateManyInput>
+    /**
+     * Filter which FileMappings to update
+     */
+    where?: FileMappingWhereInput
+    /**
+     * Limit how many FileMappings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FileMapping updateManyAndReturn
+   */
+  export type FileMappingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * The data used to update FileMappings.
+     */
+    data: XOR<FileMappingUpdateManyMutationInput, FileMappingUncheckedUpdateManyInput>
+    /**
+     * Filter which FileMappings to update
+     */
+    where?: FileMappingWhereInput
+    /**
+     * Limit how many FileMappings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FileMapping upsert
+   */
+  export type FileMappingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * The filter to search for the FileMapping to update in case it exists.
+     */
+    where: FileMappingWhereUniqueInput
+    /**
+     * In case the FileMapping found by the `where` argument doesn't exist, create a new FileMapping with this data.
+     */
+    create: XOR<FileMappingCreateInput, FileMappingUncheckedCreateInput>
+    /**
+     * In case the FileMapping was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FileMappingUpdateInput, FileMappingUncheckedUpdateInput>
+  }
+
+  /**
+   * FileMapping delete
+   */
+  export type FileMappingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+    /**
+     * Filter which FileMapping to delete.
+     */
+    where: FileMappingWhereUniqueInput
+  }
+
+  /**
+   * FileMapping deleteMany
+   */
+  export type FileMappingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FileMappings to delete
+     */
+    where?: FileMappingWhereInput
+    /**
+     * Limit how many FileMappings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FileMapping without action
+   */
+  export type FileMappingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileMapping
+     */
+    select?: FileMappingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileMapping
+     */
+    omit?: FileMappingOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3227,6 +4347,17 @@ export namespace Prisma {
   };
 
   export type VendorScalarFieldEnum = (typeof VendorScalarFieldEnum)[keyof typeof VendorScalarFieldEnum]
+
+
+  export const FileMappingScalarFieldEnum: {
+    id: 'id',
+    original: 'original',
+    mappedTo: 'mappedTo',
+    createdAt: 'createdAt',
+    filename: 'filename'
+  };
+
+  export type FileMappingScalarFieldEnum = (typeof FileMappingScalarFieldEnum)[keyof typeof FileMappingScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3297,6 +4428,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
   /**
    * Deep Input Types
@@ -3407,6 +4552,60 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Vendor"> | string
   }
 
+  export type FileMappingWhereInput = {
+    AND?: FileMappingWhereInput | FileMappingWhereInput[]
+    OR?: FileMappingWhereInput[]
+    NOT?: FileMappingWhereInput | FileMappingWhereInput[]
+    id?: IntFilter<"FileMapping"> | number
+    original?: StringFilter<"FileMapping"> | string
+    mappedTo?: StringFilter<"FileMapping"> | string
+    createdAt?: DateTimeFilter<"FileMapping"> | Date | string
+    filename?: StringFilter<"FileMapping"> | string
+  }
+
+  export type FileMappingOrderByWithRelationInput = {
+    id?: SortOrder
+    original?: SortOrder
+    mappedTo?: SortOrder
+    createdAt?: SortOrder
+    filename?: SortOrder
+  }
+
+  export type FileMappingWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: FileMappingWhereInput | FileMappingWhereInput[]
+    OR?: FileMappingWhereInput[]
+    NOT?: FileMappingWhereInput | FileMappingWhereInput[]
+    original?: StringFilter<"FileMapping"> | string
+    mappedTo?: StringFilter<"FileMapping"> | string
+    createdAt?: DateTimeFilter<"FileMapping"> | Date | string
+    filename?: StringFilter<"FileMapping"> | string
+  }, "id">
+
+  export type FileMappingOrderByWithAggregationInput = {
+    id?: SortOrder
+    original?: SortOrder
+    mappedTo?: SortOrder
+    createdAt?: SortOrder
+    filename?: SortOrder
+    _count?: FileMappingCountOrderByAggregateInput
+    _avg?: FileMappingAvgOrderByAggregateInput
+    _max?: FileMappingMaxOrderByAggregateInput
+    _min?: FileMappingMinOrderByAggregateInput
+    _sum?: FileMappingSumOrderByAggregateInput
+  }
+
+  export type FileMappingScalarWhereWithAggregatesInput = {
+    AND?: FileMappingScalarWhereWithAggregatesInput | FileMappingScalarWhereWithAggregatesInput[]
+    OR?: FileMappingScalarWhereWithAggregatesInput[]
+    NOT?: FileMappingScalarWhereWithAggregatesInput | FileMappingScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"FileMapping"> | number
+    original?: StringWithAggregatesFilter<"FileMapping"> | string
+    mappedTo?: StringWithAggregatesFilter<"FileMapping"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"FileMapping"> | Date | string
+    filename?: StringWithAggregatesFilter<"FileMapping"> | string
+  }
+
   export type PurchaseItemCreateInput = {
     id: number
     description: string
@@ -3506,6 +4705,59 @@ export namespace Prisma {
   export type VendorUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FileMappingCreateInput = {
+    original: string
+    mappedTo: string
+    createdAt?: Date | string
+    filename: string
+  }
+
+  export type FileMappingUncheckedCreateInput = {
+    id?: number
+    original: string
+    mappedTo: string
+    createdAt?: Date | string
+    filename: string
+  }
+
+  export type FileMappingUpdateInput = {
+    original?: StringFieldUpdateOperationsInput | string
+    mappedTo?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filename?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FileMappingUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    original?: StringFieldUpdateOperationsInput | string
+    mappedTo?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filename?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FileMappingCreateManyInput = {
+    id?: number
+    original: string
+    mappedTo: string
+    createdAt?: Date | string
+    filename: string
+  }
+
+  export type FileMappingUpdateManyMutationInput = {
+    original?: StringFieldUpdateOperationsInput | string
+    mappedTo?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filename?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FileMappingUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    original?: StringFieldUpdateOperationsInput | string
+    mappedTo?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filename?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3708,6 +4960,63 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type FileMappingCountOrderByAggregateInput = {
+    id?: SortOrder
+    original?: SortOrder
+    mappedTo?: SortOrder
+    createdAt?: SortOrder
+    filename?: SortOrder
+  }
+
+  export type FileMappingAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type FileMappingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    original?: SortOrder
+    mappedTo?: SortOrder
+    createdAt?: SortOrder
+    filename?: SortOrder
+  }
+
+  export type FileMappingMinOrderByAggregateInput = {
+    id?: SortOrder
+    original?: SortOrder
+    mappedTo?: SortOrder
+    createdAt?: SortOrder
+    filename?: SortOrder
+  }
+
+  export type FileMappingSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type VendorCreateNestedOneWithoutPurchaseItemInput = {
     create?: XOR<VendorCreateWithoutPurchaseItemInput, VendorUncheckedCreateWithoutPurchaseItemInput>
     connectOrCreate?: VendorCreateOrConnectWithoutPurchaseItemInput
@@ -3792,6 +5101,10 @@ export namespace Prisma {
     update?: PurchaseItemUpdateWithWhereUniqueWithoutVendorInput | PurchaseItemUpdateWithWhereUniqueWithoutVendorInput[]
     updateMany?: PurchaseItemUpdateManyWithWhereWithoutVendorInput | PurchaseItemUpdateManyWithWhereWithoutVendorInput[]
     deleteMany?: PurchaseItemScalarWhereInput | PurchaseItemScalarWhereInput[]
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -3915,6 +5228,31 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type VendorCreateWithoutPurchaseItemInput = {
