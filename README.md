@@ -1,6 +1,6 @@
-## Setup Instructions
+# Setup Instructions
 
-# Backend Setup
+## Backend Setup
 
 1. Clone the repo and navigate to the server folder:
 
@@ -36,7 +36,7 @@ npm run dev
 
 Server will run on <http://localhost:4000>
 
-# Frontend Setup
+## Frontend Setup
 
 1. Open a new terminal and navigate to the frontend:
 
